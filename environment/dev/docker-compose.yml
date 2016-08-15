@@ -1,0 +1,26 @@
+version: '2'
+services:
+  poc-sqs-web:
+    build: ../../web
+    image: registry.services.dmtio.net/poc-sqs-web:1.0.0
+    ports:
+     - "80:5000"
+    environment:
+      PORT: 5000
+      HEALTHCHECK: /
+      SQS_QUEUE: https://sqs.us-east-1.amazonaws.com/618440173281/poc-sqs-web-worker-harbor
+      REGION: us-east-1
+      AWS_ACCESS_KEY_ID: 
+      AWS_SECRET_ACCESS_KEY: 
+  poc-sqs-worker:
+    build: ../../worker
+    image: registry.services.dmtio.net/poc-sqs-worker:1.0.0
+    ports:
+     - "81:6000"
+    environment:
+      PORT: 6000
+      HEALTHCHECK: /
+      SQS_QUEUE: https://sqs.us-east-1.amazonaws.com/618440173281/poc-sqs-web-worker-harbor
+      REGION: us-east-1
+      AWS_ACCESS_KEY_ID: 
+      AWS_SECRET_ACCESS_KEY: 

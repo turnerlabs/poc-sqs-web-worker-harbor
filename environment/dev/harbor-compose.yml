@@ -1,0 +1,22 @@
+shipments:
+  mss-poc-sqs-web: 
+    env: dev
+    barge: corp-sandbox
+    containers:
+      - poc-sqs-web
+    replicas: 2
+    group: mss
+    property: turner
+    project: mss-poc-sqs-web
+    product: mss-poc-sqs-web    
+  mss-poc-sqs-worker:    
+    env: dev
+    barge: corp-sandbox
+    containers:
+      - poc-sqs-worker
+    replicas: 1
+    group: mss
+    property: turner
+    project: mss-poc-sqs-worker
+    product: mss-poc-sqs-worker   
+    
