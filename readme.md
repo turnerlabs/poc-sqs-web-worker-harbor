@@ -19,7 +19,7 @@ $ cd environment/dev
 $ terraform apply
 ```
 
-- Obtain `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from `.tfstate` file and add to `docker-compose.yml`.
+- Obtain `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from `.tfstate` file and add to a secret .env file.
 
 - Build, test, and push docker images
 
