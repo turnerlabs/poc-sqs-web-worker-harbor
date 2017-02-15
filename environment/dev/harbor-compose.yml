@@ -1,4 +1,6 @@
+version: '1'
 shipments:
+
   mss-poc-sqs-web: 
     env: dev
     barge: corp-sandbox
@@ -9,6 +11,7 @@ shipments:
     property: turner
     project: mss-poc-sqs-web
     product: mss-poc-sqs-web    
+  
   mss-poc-sqs-worker:    
     env: dev
     barge: corp-sandbox

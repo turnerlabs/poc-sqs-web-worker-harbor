@@ -1,8 +1,9 @@
 version: '2'
 services:
+
   poc-sqs-web:
     build: ../../web
-    image: registry.services.dmtio.net/poc-sqs-web:1.0.0
+    image: quay.io/turner/poc-sqs-web:1.0.0.${CIRCLE_BUILD_NUM}
     ports:
      - "80:5000"
     environment:
@@ -12,9 +13,10 @@ services:
       REGION: ${REGION}
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID} 
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY} 
+  
   poc-sqs-worker:
     build: ../../worker
-    image: registry.services.dmtio.net/poc-sqs-worker:1.0.0
+    image: quay.io/turner/poc-sqs-worker:1.0.0.${CIRCLE_BUILD_NUM}
     ports:
      - "81:6000"
     environment:
