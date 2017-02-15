@@ -17,7 +17,7 @@ machine:
 dependencies:
   override:
     # login to quay registry
-    - docker login -e="." -u="${DOCKER_USER}" -p="${DOCKER_PASS}" quay.io
+    - docker login -u="${DOCKER_USER}" -p="${DOCKER_PASS}" -e="." quay.io
 
 test:
   override:
