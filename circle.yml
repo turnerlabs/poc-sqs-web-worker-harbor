@@ -1,3 +1,6 @@
+general:
+  build_dir: environment/dev
+
 machine:
   pre:
     # install newer docker and docker-compose
@@ -14,7 +17,7 @@ machine:
 dependencies:
   override:
     # login to quay registry
-    - docker login -u="${DOCKER_USER}" -p="${DOCKER_PASS}" -e="." quay.io
+    - docker login -e="." -u="${DOCKER_USER}" -p="${DOCKER_PASS}" quay.io
 
 test:
   override:
