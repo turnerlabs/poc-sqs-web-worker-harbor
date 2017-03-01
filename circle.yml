@@ -7,9 +7,8 @@ machine:
     - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
     - pip install docker-compose
 
-    # install other tools
-    - sudo apt-get install jq
-    - sudo wget -O /usr/local/bin/harbor-compose https://github.com/turnerlabs/harbor-compose/releases/download/v0.9.0-pre-9-gc5f4c85/ncd_linux_amd64 && sudo chmod +x /usr/local/bin/harbor-compose
+    # install harbor-compose
+    - sudo wget -O /usr/local/bin/harbor-compose https://github.com/turnerlabs/harbor-compose/releases/download/v0.10.0-4-g34d9a1b/ncd_linux_amd64 && sudo chmod +x /usr/local/bin/harbor-compose
 
   services:
     - docker
@@ -27,6 +26,12 @@ test:
     # - npm test
 
 deployment:
+  CI:
+    branch: develop
+    commands:
+      # push image to registry and catlaog in harbor
+      - docker-compose push
+      - harbor-compose catalog
   CD:
     branch: master
     commands:
