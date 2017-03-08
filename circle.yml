@@ -5,10 +5,10 @@ machine:
   pre:
     # install newer docker and docker-compose
     - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
-    - pip install docker-compose
+    - pip install docker-compose==1.11.2
 
     # install harbor-compose
-    - sudo wget -O /usr/local/bin/harbor-compose https://github.com/turnerlabs/harbor-compose/releases/download/v0.10.0-4-g34d9a1b/ncd_linux_amd64 && sudo chmod +x /usr/local/bin/harbor-compose
+    - sudo wget -O /usr/local/bin/harbor-compose https://github.com/turnerlabs/harbor-compose/releases/download/v0.10.1/ncd_linux_amd64 && sudo chmod +x /usr/local/bin/harbor-compose
 
   services:
     - docker
@@ -18,23 +18,32 @@ dependencies:
     # login to quay registry
     - docker login -u="${DOCKER_USER}" -p="${DOCKER_PASS}" -e="." quay.io
 
+compile:
+  override:
+    - docker-compose build
+
 test:
   override:
-    # build image and test
-    - docker-compose build
     - docker-compose up -d
-    # - npm test
+    - echo "tests run here"
 
 deployment:
   CI:
-    branch: develop
+    branch: master
     commands:
-      # push image to registry and catlaog in harbor
+      # push image to registry and catalog in harbor
       - docker-compose push
       - harbor-compose catalog
   CD:
-    branch: master
+    branch: develop
     commands:
       # push image to registry and deploy to harbor
       - docker-compose push
       - harbor-compose deploy
+      
+  preview:
+    branch: preview
+    commands:
+      # push image to registry and deploy to harbor
+      - docker-compose push
+      - harbor-compose deploy -e preview
