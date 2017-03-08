@@ -29,12 +29,12 @@ deployment:
   CI:
     branch: develop
     commands:
-      # push image to registry and catlaog in harbor
-      - docker-compose push
-      - harbor-compose catalog
-  CD:
-    branch: master
-    commands:
       # push image to registry and deploy to harbor
       - docker-compose push
       - harbor-compose deploy
+  CD:
+    branch: master
+    commands:
+      # push image to registry and catlaog in harbor
+      - docker-compose push
+      - harbor-compose catalog
