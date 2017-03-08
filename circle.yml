@@ -41,3 +41,9 @@ deployment:
       - docker-compose push
       - harbor-compose deploy
       
+  preview:
+    branch: preview
+    commands:
+      # push image to registry and deploy to harbor
+      - docker-compose push
+      - harbor-compose deploy -e preview
