@@ -35,6 +35,6 @@ deployment:
   CD:
     branch: master
     commands:
-      # push image to registry and catlaog in harbor
+      # push image to registry and catalog in harbor
       - docker-compose push
       - harbor-compose catalog
