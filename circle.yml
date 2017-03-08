@@ -18,12 +18,14 @@ dependencies:
     # login to quay registry
     - docker login -u="${DOCKER_USER}" -p="${DOCKER_PASS}" -e="." quay.io
 
+compile:
+  override:
+    - docker-compose build
+
 test:
   override:
-    # build image and test
-    - docker-compose build
     - docker-compose up -d
-    # - npm test
+    - echo "tests run here"
 
 deployment:
   CI:
