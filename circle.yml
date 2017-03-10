@@ -26,6 +26,7 @@ test:
   override:
     - docker-compose up -d
     - echo "tests run here"
+    - docker-compose down
 
 deployment:
   CI:
