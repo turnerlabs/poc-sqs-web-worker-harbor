@@ -3,7 +3,7 @@ services:
 
   poc-sqs-web:
     build: ../../web
-    image: quay.io/turner/poc-sqs-web:1.0.0-${CIRCLE_BUILD_NUM}
+    image: quay.io/turner/poc-sqs-web:1.0.0-${CIRCLE_BRANCH}.${CIRCLE_BUILD_NUM}
     ports:
      - "80:5000"
     environment:
@@ -16,7 +16,7 @@ services:
   
   poc-sqs-worker:
     build: ../../worker
-    image: quay.io/turner/poc-sqs-worker:1.0.0-${CIRCLE_BUILD_NUM}
+    image: quay.io/turner/poc-sqs-worker:1.0.0-${CIRCLE_BRANCH}.${CIRCLE_BUILD_NUM}
     ports:
      - "81:6000"
     environment:
